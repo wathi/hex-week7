@@ -1,15 +1,16 @@
 <template>
+<div>this is navigation</div>
   <div class="grid grid-cols-2 lg:grid-cols-3 p-6">
     <div class="border p-6" v-for="product in products" :key="product.id">
-      <router-link :to="{ name: 'ItemSingle', params: { id: `${product.id}` }}">
+      <router-link :to="{ name: 'Product', params: { id: `${product.id}` }}">
         <img :src="product.imageUrl" alt="" class="w-auto">
         <div>{{ product.title }}</div>
         <div class="mb-4">{{ product.description }}</div>
         <div>
           <span class="line-through text-gray-500">
-            {{ this.currency }}{{ product.origin_price }}
+            {{ currency }}{{ product.origin_price }}
           </span>
-          {{ this.currency }}{{ product.price }}
+          {{ currency }}{{ product.price }}
         </div>
       </router-link>
     </div>
@@ -24,7 +25,6 @@ export default {
     return {
       products: [],
       currency: '¥',
-
     };
   },
   inject: ['apiInfo'],
