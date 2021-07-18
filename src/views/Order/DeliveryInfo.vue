@@ -1,25 +1,30 @@
 <template>
-  <div>
-    <div class="my-5 row justify-content-center">
+  <div class="bg-gray-100 p-6 text-xl text-gray-500">
+    <div class="container max-w-4xl lg:max-w-6xl mx-auto">
+      Delivery Information
+    </div>
+  </div>
+  <div class="container max-w-4xl lg:max-w-6xl mx-auto">
+    <div class="my-5 flex flex-row justify-content-center">
       <Form class="col-md-6" v-slot="{ errors }"  @submit="createOrder">
         <div class="mb-3">
           <label for="email" class="form-label">Email</label>
           <Field id="email" name="email" type="email" class="form-control"
-                   :class="{ 'is-invalid': errors['email'] }" placeholder="請輸入 Email"
+                   :class="{ 'is-invalid': errors['email'] }" placeholder="Please enter Email"
                    rules="email|required" v-model="form.user.email"
                   ></Field>
           <error-message name="email" class="invalid-feedback"></error-message>
         </div>
 
         <div class="mb-3">
-          <label for="name" class="form-label">收件人姓名</label>
-          <Field id="name" name="姓名" type="text" class="form-control"
-            :class="{ 'is-invalid': errors['姓名'] }"
-                   placeholder="請輸入姓名"
+          <label for="name" class="form-label">Receiver Name</label>
+          <Field id="name" name="name" type="text" class="form-control"
+            :class="{ 'is-invalid': errors['name'] }"
+                   placeholder="Please enter receiver name"
                    rules="required"
                    v-model="form.user.name"
                    ></Field>
-          <error-message name="姓名" class="invalid-feedback"></error-message>
+          <error-message name="name" class="invalid-feedback"></error-message>
         </div>
 
         <div class="mb-3">

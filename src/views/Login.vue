@@ -59,13 +59,13 @@ export default {
           if (res.data.success) {
             document.cookie = `OnlineBusTour=${res.data.token}; expires=${new Date(res.data.expired)}`;
             this.errMsg = '';
-            this.$router.push('Edit');
+            this.$router.push({ name: 'AdminProduct' });
             console.log('login success');
           }
           if (!res.data.success) {
             this.errMsg = res.data.message;
             console.log(res.data.message);
-            this.$router.push('Login');
+            this.$router.push({ name: 'Login' });
           }
         })
         .catch((err) => {

@@ -1,47 +1,52 @@
 <template>
+  <div class="bg-gray-100 p-6 text-xl text-gray-500">
+    <div class="container max-w-4xl lg:max-w-6xl mx-auto">
+      Shopping Cart
+    </div>
+  </div>
+
   <div class="container max-w-4xl lg:max-w-6xl mx-auto mt-6 mb-6">
     <div>
-      <h2>購物車</h2>
-    </div>
-    <div>
-      <table class="mx-auto">
+      <table class="mx-auto mb-2">
         <thead>
           <tr>
-            <th>貨品</th>
-            <th>數量</th>
-            <th>小計</th>
+            <th class="pr-2">Product</th>
+            <th class="pr-2">Qty</th>
+            <th class="pr-2">Sub Total</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           <template v-if="cart.carts">
             <tr v-for="item in cart.carts" :key="item.id">
-              <td>{{ item.product.title }}</td>
-              <td>
+              <td class="pr-2">{{ item.product.title }}</td>
+              <td class="pr-2">
                 <input class="w-20" type="number" min="1" v-model.number="item.qty"
                 @change="updateCart(item)">
                 <!-- :disabled="item.id === loadingStatus.loadingItem" -->
               </td>
-              <td>{{ item.total }}</td>
-              <td><button type="button" class="border"
-                @click="deleteOne(item)">刪除</button></td>
+              <td class="pr-2">{{ item.total }}</td>
+              <td><button type="button" class="border p-1"
+                @click="deleteOne(item)">Delete</button></td>
                 <!-- :disabled="item.id === loadingStatus.loadingItem" -->
-            </tr>
-          </template>
-          <template v-if="cart.total !== 0">
-            <tr>
-              <td>
-                合計: {{ cart.final_total }}
-              </td>
-              <td>
-                <button type="button" class="border"
-                  @click="deleteAll">刪除全部</button>
-              </td>
             </tr>
           </template>
         </tbody>
       </table>
-      <router-link :to="{ name: 'DeliveryInfo' }">填寫送貨資料</router-link>
+      <div v-if="cart.total !== 0" class="border-t-2 pt-2">
+        <div class="flex flex-row justify-end p-6">
+          <div class="mr-2">
+            Total: {{ cart.final_total }}
+          </div>
+          <div>
+            <button type="button" class="border p-1"
+              @click="deleteAll">Clear Cart</button>
+          </div>
+        </div>
+        <div class="px-6">
+          <router-link :to="{ name: 'DeliveryInfo' }"  class="border p-1">Next Step</router-link>
+        </div>
+      </div>
     </div>
   </div>
 </template>

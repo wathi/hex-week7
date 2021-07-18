@@ -33,7 +33,8 @@
                                   required>
                               </label>
                               <label for="description">說明
-                                <input id="description"  class="border p-2" name="description"
+                                <input id="description"  class="border p-2"
+                                  name="description"
                                   type="text" :value="description"
                                   @input="$emit('update:description', $event.target.value)"
                                   required>

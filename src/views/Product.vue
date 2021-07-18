@@ -1,15 +1,32 @@
 <template>
+  <div class="bg-gray-100 p-6 text-xl text-gray-500">
+    <div class="container max-w-4xl lg:max-w-6xl mx-auto">
+      Product
+    </div>
+  </div>
   <div class="container max-w-4xl lg:max-w-6xl mx-auto mt-6 mb-6">
-    <div class="text-2xl pr-10 py-10">{{ product.title }}</div>
+    <div class="text-2xl py-10 text-gray-700">
+      {{ product.title }}
+    </div>
     <img :src="product.imageUrl" alt="" class="w-auto mb-10">
-    <div class="flex flex-row justify-between">
-      <div class="">{{ product.content}}</div>
+    <div class="grid grid-cols-3">
+      <div class="col-span-2 pr-10 text-gray-700">
+        {{ product.content}}
+      </div>
       <div class="bg-gray-100 text-gray-700 py-10 px-20">
-        <div class="mb-2">Price
+        <div class="mb-2">
+          <span class="mr-2">
+            Price
+          </span>
           <span class="text-red-600 font-bold">{{ currency }}{{ product.price }}</span>
         </div>
-        <div class="mb-2">Qty <input type="number"
-          v-model.number="qty" class="border w-10 p-1 w-20"></div>
+        <div class="mb-2">
+          <span class="mr-2">
+            Qty
+          </span>
+          <input type="number"
+          v-model.number="qty" class="border w-10 p-1 mb-4">
+        </div>
         <button class="border p-2 bg-white hover:bg-gray-50"
           @click="addCart(product.id, qty)">add to cart</button>
       </div>

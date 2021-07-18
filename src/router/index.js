@@ -8,9 +8,11 @@ import DeliveryInfo from '../views/Order/DeliveryInfo.vue';
 import Order from '../views/Order/Order.vue';
 import OrderComplete from '../views/Order/OrderComplete.vue';
 import Blog from '../views/Blog.vue';
+import Login from '../views/Login.vue';
 import Admin from '../views/Dashboard/Admin.vue';
-import Login from '../views/Dashboard/Login.vue';
-import Edit from '../views/Dashboard/Edit.vue';
+import AdminProduct from '../views/Dashboard/AdminProduct.vue';
+import AdminOrder from '../views/Dashboard/AdminOrder.vue';
+import NotFound from '../views/NotFound.vue';
 
 const routes = [
   {
@@ -60,6 +62,11 @@ const routes = [
         name: 'Blog',
         component: Blog,
       },
+      {
+        path: 'login',
+        name: 'Login',
+        component: Login,
+      },
     ],
   },
   {
@@ -68,16 +75,21 @@ const routes = [
     component: Admin,
     children: [
       {
-        path: 'login',
-        name: 'Login',
-        component: Login,
+        path: '/admin/product',
+        name: 'AdminProduct',
+        component: AdminProduct,
       },
       {
-        path: 'edit',
-        name: 'Edit',
-        component: Edit,
+        path: '/admin/order',
+        name: 'AdminOrder',
+        component: AdminOrder,
       },
     ],
+  },
+  {
+    path: '/:pathMatch(.*)',
+    name: 'NotFound',
+    component: NotFound,
   },
 ];
 

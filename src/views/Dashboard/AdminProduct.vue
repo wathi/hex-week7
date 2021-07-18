@@ -2,9 +2,9 @@
   <!-- <div> -->
     <div class="container max-w-4xl lg:max-w-6xl mx-auto p-6 flex justify-center">
       <div id="backend">
-        <h3 class="text-center">後台管理</h3>
-        <button id="add-product" class="mb-2" type="button"
-          @click="showProductModal(true)">新增</button>
+        <h3 class="text-center text-xl mb-4">Product Management</h3>
+        <button id="add-product" class="mb-6 border p-2" type="button"
+          @click="showProductModal(true)">Add New</button>
           <ProductModal
             v-model:title="tempProduct.title"
             v-model:category="tempProduct.category"
@@ -27,33 +27,33 @@
           <table class="table">
             <thead>
               <tr>
-                <th scope="">名稱</th>
-                <th scope="">說明</th>
-                <th scope="">圖片</th>
-                <th scope="">原價</th>
-                <th scope="">現價</th>
-                <th scope="">啟用</th>
-                <th></th>
-                <th></th>
+                <th class="pr-2 text-left">Name</th>
+                <th class="pr-2 text-left">Description</th>
+                <th class="pr-2 text-left">Image</th>
+                <th class="pr-2 text-left">Original</th>
+                <th class="pr-2 text-left">Price</th>
+                <th class="pr-2 text-left">Active</th>
+                <th class="pr-2"></th>
+                <th class="pr-2"></th>
               </tr>
             </thead>
             <tbody>
               <template v-for="product in products" :key="product.id">
                 <tr>
-                  <td>{{ product.title }}</td>
-                  <td>{{ product.description }}</td>
-                  <td><img class="w-20" :src="product.imageUrl" alt=""></td>
-                  <td>{{ currency }}{{ product.origin_price }}</td>
-                  <td>{{ currency }}{{ product.price }}</td>
-                  <td v-if="product.is_enabled">啟用</td>
-                  <td v-else>停用</td>
-                  <td>
-                    <button value="product.id" class="border"
-                      @click="getEditProduct(false, product)">修改</button>
+                  <td class="pr-2">{{ product.title }}</td>
+                  <td class="pr-2">{{ product.description }}</td>
+                  <td class="pr-2"><img class="w-20" :src="product.imageUrl" alt=""></td>
+                  <td class="pr-2">{{ currency }}{{ product.origin_price }}</td>
+                  <td class="pr-2">{{ currency }}{{ product.price }}</td>
+                  <td class="pr-2" v-if="product.is_enabled">on</td>
+                  <td class="pr-2" v-else>off</td>
+                  <td class="pr-2">
+                    <button value="product.id" class="border p-2"
+                      @click="getEditProduct(false, product)">Edit</button>
                   </td>
-                  <td class="text-center">
-                    <button value="product.id" class="border"
-                      @click="deleteProduct(product.id)">刪除</button>
+                  <td class="pr-2">
+                    <button value="product.id" class="border p-2"
+                      @click="deleteProduct(product.id)">Delete</button>
                   </td>
                 </tr>
               </template>
@@ -92,7 +92,7 @@ export default {
   },
   inject: ['apiInfo'],
   methods: {
-    getProductAdmin(page) {
+    getProductAdmin(page = 1) {
       this.products = [];
       axios.get(`${this.apiInfo.apiPath}/api/${this.apiInfo.apiName}/admin/products?page=${page}`)
         .then((res) => {
